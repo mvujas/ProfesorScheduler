@@ -3,7 +3,7 @@ package models;
 import java.util.Map;
 
 /**
- * Korisnik cuva podatke samo podatke samo koji ce aplikaciji biti neophodni
+ * Korisnik cuva podatke samo podatke koji ce aplikaciji biti neophodni
  * Baza ce obavljati autentikaciju
  */
 public abstract class Korisnik {
