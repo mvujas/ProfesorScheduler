@@ -24,17 +24,18 @@ public final class DBUtils {
 			while(rset.next()) {
 				mapa = new HashMap<>();
 				for(int i = 0; i < columnCount; i++) {
-					String imeKolone = metaData.getColumnName(i);
+					int column = i + 1;
+					String imeKolone = metaData.getColumnName(column);
 					Object vrednost = null;
-					switch(metaData.getColumnType(i)) {
+					switch(metaData.getColumnType(column)) {
 						case Types.INTEGER:
-							vrednost = rset.getInt(i);
+							vrednost = rset.getInt(column);
 							break;
 						case Types.VARCHAR:
-							vrednost = rset.getString(i);
+							vrednost = rset.getString(column);
 							break;
 						case Types.DATE:
-							vrednost = rset.getDate(i);
+							vrednost = rset.getDate(column);
 							break;
 					}
 					if(vrednost != null) {
@@ -42,11 +43,10 @@ public final class DBUtils {
 					}
 				}
 				listaMapa.add(mapa);
-				
 			}
-			
 			return listaMapa;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
