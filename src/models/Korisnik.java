@@ -1,5 +1,11 @@
 package models;
 
+import java.util.Map;
+
+/**
+ * Korisnik cuva podatke samo podatke samo koji ce aplikaciji biti neophodni
+ * Baza ce obavljati autentikaciju
+ */
 public abstract class Korisnik {
 	private Integer id;
 	private String ime, prezime;
@@ -41,5 +47,30 @@ public abstract class Korisnik {
 	@Override
 	public String toString() {
 		return String.format("%s %s", ime, prezime);
+	}
+	
+	public static Korisnik fromDBRowMap(Map<String, Object> mapa) {
+		try {
+			String uloga = ((String)mapa.get("naziv_uloge")).toLowerCase();
+			
+			Korisnik rezultat;
+			switch(uloga) {
+				case "profesor":
+					rezultat = new Profesor();
+					break;
+				case "student":
+					rezultat = new Student();
+					break;
+				default:
+					rezultat = null;
+			}
+			rezultat.setId((Integer)mapa.get("k_id"));
+			rezultat.setIme((String)mapa.get("ime"));
+			rezultat.setPrezime((String)mapa.get("prezime"));
+			return rezultat;
+		}
+		catch(Exception e) {
+			return null;
+		}
 	}
 }
