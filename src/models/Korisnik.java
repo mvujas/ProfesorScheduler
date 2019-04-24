@@ -49,21 +49,24 @@ public abstract class Korisnik {
 		return String.format("%s %s", ime, prezime);
 	}
 	
+	private static Korisnik emptyKorisnikFromNazivUloge(String nazivUloge) {
+		Korisnik result = null;
+		switch(nazivUloge.toLowerCase()) {
+			case "profesor":
+				result = new Profesor();
+				break;
+			case "student":
+				result = new Student();
+				break;
+		}
+		return result;
+	}
+	
 	public static Korisnik fromDBRowMap(Map<String, Object> mapa) {
 		try {
-			String uloga = ((String)mapa.get("naziv_uloge")).toLowerCase();
+			String uloga = (String)mapa.get("naziv_uloge");
 			
-			Korisnik rezultat;
-			switch(uloga) {
-				case "profesor":
-					rezultat = new Profesor();
-					break;
-				case "student":
-					rezultat = new Student();
-					break;
-				default:
-					rezultat = null;
-			}
+			Korisnik rezultat = emptyKorisnikFromNazivUloge(uloga);
 			rezultat.setId((Integer)mapa.get("k_id"));
 			rezultat.setIme((String)mapa.get("ime"));
 			rezultat.setPrezime((String)mapa.get("prezime"));
