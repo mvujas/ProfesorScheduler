@@ -10,8 +10,8 @@ import models.Korisnik;
 public final class KorisnikTransactions {
 	private KorisnikTransactions() {}
 	
-	private static abstract class GetAllKorisnik extends SelectTransaction<Korisnik> {
-		public GetAllKorisnik(String nazivUloge) {
+	public static abstract class GetAllKorisnikTransaction extends SelectTransaction<List<Korisnik>> {
+		public GetAllKorisnikTransaction(String nazivUloge) {
 			super(String.format(
 					"SELECT k.k_id, k.ime, k.prezime, u.naziv AS 'naziv_uloge' "
 					+ "FROM Korisnik k, Uloga u "
@@ -23,14 +23,14 @@ public final class KorisnikTransactions {
 		}
 	}
 	
-	public static class GetAllProfesor extends GetAllKorisnik {
-		public GetAllProfesor() {
+	public static class GetAllProfesorTransaction extends GetAllKorisnikTransaction {
+		public GetAllProfesorTransaction() {
 			super("profesor");
 		}
 	}
 	
-	public static class GetAllStudent extends GetAllKorisnik {
-		public GetAllStudent() {
+	public static class GetAllStudentTransaction extends GetAllKorisnikTransaction {
+		public GetAllStudentTransaction() {
 			super("student");
 		}
 	}

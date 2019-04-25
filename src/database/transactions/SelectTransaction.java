@@ -9,7 +9,7 @@ import java.util.Map;
 
 import utils.DBUtils;
 
-public abstract class SelectTransaction<V> implements Transaction<List<V>> {
+public abstract class SelectTransaction<V> implements Transaction<V> {
 
 	private String query;
 	private Object[] parameters;
