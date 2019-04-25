@@ -1,9 +1,11 @@
 package utils;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -56,6 +58,23 @@ public final class DBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			try {
+				rset.close();
+			} catch (Exception e2) {}
+		}
+	}
+	
+	public static void setParameter(PreparedStatement pstmt, int parameterIndex, Object value) 
+			throws SQLException {
+		if(value instanceof Integer) {
+			pstmt.setInt(parameterIndex, (int)value);
+		}
+		else if(value instanceof String) {
+			pstmt.setString(parameterIndex, (String)value);
+		}
+		else if(value instanceof Date) {
+			pstmt.setDate(parameterIndex, (java.sql.Date)value);
 		}
 	}
 }
