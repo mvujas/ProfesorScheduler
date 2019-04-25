@@ -92,6 +92,10 @@ public class ConnectionPool {
 	}
 	
 	public void releaseConnection(Connection conn) {
+		if(conn == null) {
+			return;
+		}
+		
 		if(connectionPool == null) {
 			initPool();
 		}
