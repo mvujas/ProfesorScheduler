@@ -1,12 +1,8 @@
 package database;
 
 import java.sql.Connection;
-import java.util.List;
 
-import database.transactions.KorisnikTransactions.GetAllProfesorTransaction;
-import database.transactions.KorisnikTransactions.GetAllStudentTransaction;
 import database.transactions.SelectTransaction;
-import models.Korisnik;
 
 public class SQLDataManager implements DataManager {
 	
@@ -31,14 +27,6 @@ public class SQLDataManager implements DataManager {
 		} finally {
 			connections.releaseConnection(conn);
 		}
-	}
-	
-	public List<Korisnik> getAllProfesor() {
-		return selectQuery(new GetAllProfesorTransaction());
-	}
-	
-	public List<Korisnik> getAllStudent() {
-		return selectQuery(new GetAllStudentTransaction());
 	}
 
 	
