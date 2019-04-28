@@ -1,21 +1,24 @@
-CREATE TABLE Uloga (
-	u_id 	INTEGER PRIMARY KEY,
-	naziv 	TEXT NOT NULL
+CREATE TABLE Smer (
+	s_id	INTEGER PRIMARY KEY,
+	naziv	TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE Korisnik (
-	k_id		INTEGER PRIMARY KEY,
-	ime			TEXT NOT NULL,
-	prezime		TEXT NOT NULL,
-	username	TEXT UNIQUE NOT NULL,
-	password	TEXT NOT NULL,
-	uloga_id	INTEGER NOT NULL,
-	FOREIGN KEY(uloga_id) REFERENCES Uloga(u_id)
+CREATE TABLE Student (
+	broj_indeksa	TEXT PRIMARY KEY,
+	ime				TEXT NOT NULL,
+	prezime			TEXT NOT NULL,
+	smer_s_id		INTEGER,
+	FOREIGN KEY(smer_s_id) REFERENCES Smer(s_id)
 );
 
-INSERT INTO Uloga(u_id, naziv) VALUES(0, 'profesor');
-INSERT INTO Uloga(u_id, naziv) VALUES(1, 'student');
-INSERT INTO Korisnik(ime, prezime, username, password, uloga_id) 
-	VALUES('Mika', 'Mikic', 'mikamika', 'sifra123', 0);
-INSERT INTO Korisnik(ime, prezime, username, password, uloga_id) 
-	VALUES('Pera', 'Peric', 'perica', 'sifra123', 1);
+CREATE TABLE Obaveza (
+	o_id			INTEGER PRIMARY KEY,
+	naziv			TEXT NOT NULL,
+	vreme_pocetka	INTEGER NOT NULL,
+	vreme_kraja		INTEGER NOT NULL,
+	student_broj_indeksa TEXT,
+	FOREIGN KEY(student_broj_indeksa) REFERENCES Student(broj_indeksa)
+);
+
+INSERT INTO Smer(naziv) VALUES ('Racunarske nauke');
+INSERT INTO Smer(naziv) VALUES ('Informacione tehnologije');

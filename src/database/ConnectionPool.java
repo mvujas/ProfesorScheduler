@@ -109,6 +109,10 @@ public class ConnectionPool {
 	}
 
 	public void close() {
+		if(connectionPool == null) {
+			return;
+		}
+		
 		for(Connection conn: connectionPool) {
 			try {
 				conn.close();
