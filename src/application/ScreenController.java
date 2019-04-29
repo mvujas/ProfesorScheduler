@@ -22,6 +22,8 @@ public class ScreenController {
     }
 
     public void activate(String name){
-        main.setRoot( screenMap.get(name) );
+        Parent pane = screenMap.get(name);
+    	main.setRoot(pane);
+        pane.fireEvent(new OnShowEvent());
     }
 }

@@ -1,8 +1,9 @@
 package application;
 
+import javafx.event.EventHandler;
 import models.DataModel;
 
-public class ComponentController {
+public abstract class ComponentController {
 	protected DataModel data;
 	protected ScreenController screenController;
 	
@@ -20,5 +21,9 @@ public class ComponentController {
 	
 	public void setScreenController(ScreenController screenController) {
 		this.screenController = screenController;
+	}
+	
+	@SuppressWarnings("unused")
+	public void onShow(OnShowEvent event) {
 	}
 }

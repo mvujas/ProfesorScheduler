@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.obavezeList.ObavezeListController">
+<AnchorPane id="AnchorPane" fx:id="addObavezaBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.obavezeList.ObavezeListController">
    <effect>
       <Glow />
    </effect>
@@ -35,7 +35,7 @@
             <TableColumn prefWidth="147.0" text="Student" />
         </columns>
       </TableView>
-      <Button layoutX="300.0" layoutY="449.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Nova obaveza">
+      <Button fx:id="obavezaAddButton" layoutX="300.0" layoutY="449.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Dugme akcije">
          <font>
             <Font size="14.0" />
          </font>

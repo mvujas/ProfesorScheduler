@@ -25,6 +25,7 @@ public class Application extends javafx.application.Application {
 			Parent pane = loader.load();
 			ComponentController controller = 
 					loader.<ComponentController>getController();
+			pane.addEventHandler(OnShowEvent.SHOW_EVENT, controller::onShow);
 			controller.setScreenController(screenController);
 			controller.setData(data);
 			return pane;
