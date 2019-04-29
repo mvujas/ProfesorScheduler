@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.obavezeList.ObavezeListController">
+   <effect>
+      <Glow />
+   </effect>
+   <children>
+      <Rectangle fill="WHITE" height="107.0" layoutX="10.0" layoutY="14.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+      <Label layoutX="57.0" layoutY="53.0" text="Izaberite datum:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="273.0" layoutY="58.0" promptText="datum" />
+      <Label layoutX="14.0" layoutY="131.0" text="Izaberite datum prvo da biste prikazali obaveze">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView layoutX="10.0" layoutY="161.0" prefHeight="277.0" prefWidth="480.0">
+        <columns>
+          <TableColumn prefWidth="182.0" text="Opis" />
+          <TableColumn minWidth="7.0" prefWidth="75.0" text="Od" />
+            <TableColumn prefWidth="75.0" text="Do" />
+            <TableColumn prefWidth="147.0" text="Student" />
+        </columns>
+      </TableView>
+      <Button layoutX="300.0" layoutY="449.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Nova obaveza">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

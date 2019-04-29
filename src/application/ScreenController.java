@@ -21,7 +21,7 @@ public class ScreenController {
         screenMap.remove(name);
     }
 
-    protected void activate(String name){
+    public void activate(String name){
         main.setRoot( screenMap.get(name) );
     }
 }

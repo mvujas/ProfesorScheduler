@@ -1,15 +1,24 @@
 package application.roleSelection;
 
+import application.ComponentController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import models.Uloga;
 
-public class RoleSelectionController {
+public class RoleSelectionController extends ComponentController {
     @FXML
-    public Button profesorBtn;
-	
-	@FXML
-    public void initialize() 
-    {
-		profesorBtn.setText("Pericaa");
+    private Button profesorBtn;
+    @FXML
+    private Button studentBtn;
+    
+    @FXML
+    private void initialize() {
+    	profesorBtn.setOnAction(e -> chooseRole(Uloga.PROFESOR));
+    	studentBtn.setOnAction(e -> chooseRole(Uloga.STUDENT));
     }
+	
+	private void chooseRole(Uloga uloga) {
+		data.setUloga(uloga);
+		screenController.activate("obavezeList");
+	}
 }
