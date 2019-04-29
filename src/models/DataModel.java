@@ -1,11 +1,13 @@
 package models;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.joda.time.LocalDate;
 
 import database.DataManager;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -14,15 +16,13 @@ public class DataModel {
 	private DataManager dataUtils;
 	private ObservableMap<Integer, Smer> smerovi;
 	private ObservableMap<String, Student> studenti;
-	private ObservableMap<LocalDate, ObservableList<Obaveza>> obaveze;
+	private Map<LocalDate, ObservableList<Obaveza>> obaveze;
 	private Uloga uloga = null;
-	private LocalDate prikazaniDatum = new LocalDate();
+	private SimpleObjectProperty<LocalDate> prikazaniDatum = new SimpleObjectProperty<>(new LocalDate());
 
 	public DataModel(DataManager dataUtils) {
 		this.dataUtils = dataUtils;
 		loadModelFromDatabase();
-		System.out.println(smerovi);
-		System.out.println(studenti);
 	}
 	
 	public Uloga getUloga() {
@@ -32,6 +32,38 @@ public class DataModel {
 		this.uloga = uloga;
 	}
 	
+	public SimpleObjectProperty<LocalDate> getPrikazaniDatum() {
+		return prikazaniDatum;
+	}
+
+	public void setPrikazaniDatum(SimpleObjectProperty<LocalDate> prikazaniDatum) {
+		this.prikazaniDatum = prikazaniDatum;
+	}
+
+	public ObservableMap<Integer, Smer> getSmerovi() {
+		return smerovi;
+	}
+
+	public void setSmerovi(ObservableMap<Integer, Smer> smerovi) {
+		this.smerovi = smerovi;
+	}
+
+	public ObservableMap<String, Student> getStudenti() {
+		return studenti;
+	}
+
+	public void setStudenti(ObservableMap<String, Student> studenti) {
+		this.studenti = studenti;
+	}
+
+	public Map<LocalDate, ObservableList<Obaveza>> getObaveze() {
+		return obaveze;
+	}
+
+	public void setObaveze(ObservableMap<LocalDate, ObservableList<Obaveza>> obaveze) {
+		this.obaveze = obaveze;
+	}
+
 	private void loadModelFromDatabase() {
 		smerovi = FXCollections.observableMap(dataUtils.getAllSmer());
 		Map<String, Student> sviStudenti = dataUtils.getAllStudent();
@@ -45,7 +77,7 @@ public class DataModel {
 			});
 		studenti = FXCollections.observableMap(sviStudenti);
 		Map<LocalDate, List<Obaveza>> sveObaveze = dataUtils.getAllObaveze();
-		obaveze = FXCollections.emptyObservableMap();
+		obaveze = new HashMap<>();
 		sveObaveze.entrySet()
 			.stream()
 			.forEach(lista ->  {
@@ -56,8 +88,6 @@ public class DataModel {
 				});
 				obaveze.put(lista.getKey(), FXCollections.observableList(lista.getValue()));
 			});
-		
-		System.out.println(sveObaveze);
 	}
 	
 	public void close() {

@@ -1,13 +1,19 @@
 package application.obavezeList;
 
+import org.joda.time.LocalDate;
+
 import application.ComponentController;
 import application.OnShowEvent;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import models.Obaveza;
+import models.Student;
 import models.Uloga;
 import utils.DateUtils;
 
@@ -29,6 +35,8 @@ public class ObavezeListController extends ComponentController {
 	private TableColumn<Obaveza, String> vremeKrajaObavezeKolona;
 	@FXML
 	private TableColumn<Obaveza, String> studentKolona;
+	@FXML
+	private TableView<Obaveza> tabela;
 	
 	private void setAppropriateButton() {
 		String buttonText = "";
@@ -48,23 +56,42 @@ public class ObavezeListController extends ComponentController {
 		obavezaAddButton.setOnAction(e -> screenController.activate(nextPage));
 	}
 	
-	private void updateListuObaveza() {
-		
+	private void setListDate(LocalDate date) {
+		labelIznadListe.setText(String.format(
+				"Obaveze profesora za dan %s su:", DateUtils.getDatumAsString(date)));
+		ObservableList<Obaveza> obaveze = data.getObaveze().get(date);
+		tabela.setItems(obaveze);
+	}
+	
+	@Override
+	public void onModelSet() {
+		LocalDate datum = data.getPrikazaniDatum().get();
+		datePicker.setValue(DateUtils.jodaLocalDatetoJavaLocalDate(datum));
+		setListDate(datum);
+		data.getPrikazaniDatum().addListener((observable, oldValue, newValue) -> {
+			setListDate(newValue);
+		});
 	}
 	
 	@Override
 	public void onShow(OnShowEvent event) {
-		
 		setAppropriateButton();
+		
 	}
 	
 	@FXML
 	private void initialize() {
 		datePicker.setOnAction(e -> {
-			java.time.LocalDate datum = datePicker.getValue();
-			System.out.println(DateUtils.getDatumAsString(DateUtils.javaLocalDateToJodaLocalDate(datum)));
-			
-			System.out.println(datum);
+			data.getPrikazaniDatum().set(DateUtils.javaLocalDateToJodaLocalDate(datePicker.getValue()));
+		});
+		
+		// Property bi bili nepotrebni da je od pocetka dobro radjen projekat
+		opisObavezeKolona.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getNaziv()));
+		vremePocetkaObavezeKolona.setCellValueFactory(e -> new SimpleStringProperty(DateUtils.getTimeAsString(e.getValue().getVremePocetka())));
+		vremeKrajaObavezeKolona.setCellValueFactory(e -> new SimpleStringProperty(DateUtils.getTimeAsString(e.getValue().getVremeKraja())));
+		studentKolona.setCellValueFactory(e -> {
+			Student s = e.getValue().getStudent();
+			return new SimpleStringProperty(s == null ? "" : String.format("%s %s", s.getIme(), s.getPrezime()));
 		});
 	}
 }

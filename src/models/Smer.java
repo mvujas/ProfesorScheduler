@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Smer {
 	private Integer id;
@@ -42,5 +43,25 @@ public class Smer {
 	@Override
 	public String toString() {
 		return getNaziv();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		
+		if(obj == null) {
+			return false;
+		}
+		
+		if(this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Smer s = (Smer)obj;
+		
+		return Objects.equals(id, s.id) &&
+				Objects.equals(naziv, s.naziv);
 	}
 }

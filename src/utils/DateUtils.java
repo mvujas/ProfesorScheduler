@@ -41,6 +41,10 @@ public final class DateUtils {
 		return new LocalDate(java.util.Date.from(javaDate.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant()));
 	}
 	
+	public static java.time.LocalDate jodaLocalDatetoJavaLocalDate(LocalDate jodaDate) {
+		return java.time.LocalDate.of(jodaDate.getYear(), jodaDate.getMonthOfYear(), jodaDate.getDayOfMonth());
+	}
+	
 	public static long utcToMillis(int UTC) {
 		return (UTC - 3600) * 1000L;
 	}

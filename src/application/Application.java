@@ -29,6 +29,7 @@ public class Application extends javafx.application.Application {
 			pane.addEventHandler(OnShowEvent.SHOW_EVENT, controller::onShow);
 			controller.setScreenController(screenController);
 			controller.setData(data);
+			controller.onModelSet();
 			return pane;
 		} catch (Exception e) {
 			e.printStackTrace();

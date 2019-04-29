@@ -22,7 +22,9 @@ public abstract class ComponentController {
 		this.screenController = screenController;
 	}
 	
-	@SuppressWarnings("unused")
 	public void onShow(OnShowEvent event) {
+	}
+	
+	public void onModelSet() {
 	}
 }

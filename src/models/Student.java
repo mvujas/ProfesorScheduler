@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Map;
+import java.util.Objects;
 
 import utils.StudentUtils;
 
@@ -96,5 +97,27 @@ public class Student {
 	@Override
 	public String toString() {
 		return String.format("%s %s", ime, prezime);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		
+		if(obj == null) {
+			return false;
+		}
+		
+		if(this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Student s = (Student)obj;
+		
+		return Objects.equals(ime, s.ime) &&
+				Objects.equals(prezime, s.prezime) &&
+				Objects.equals(brojIndeksa, s.brojIndeksa) &&
+				Objects.equals(smer, s.smer);
 	}
 }

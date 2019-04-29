@@ -6,11 +6,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.obavezaForm.ObavezaFormController">
    <children>
       <Rectangle fill="WHITE" height="211.0" layoutX="10.0" layoutY="135.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="480.0" />
-      <Label layoutX="10.0" layoutY="107.0" text="Nova obaveza za dd. MM. yyyy.">
+      <Label fx:id="headingLabel" layoutX="10.0" layoutY="107.0" text="Nova obaveza za dd. MM. yyyy.">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

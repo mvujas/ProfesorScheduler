@@ -10,7 +10,7 @@ import models.Obaveza;
 public class GetAllObavezeTransaction extends SelectTransaction<List<Obaveza>> {
 	public GetAllObavezeTransaction() {
 		super("SELECT o_id, naziv, vreme_pocetka, vreme_kraja, student_broj_indeksa "
-				+ "FROM Obaveza");
+				+ "FROM Obaveza ORDER BY vreme_pocetka ASC");
 	}
 
 	@Override
