@@ -76,7 +76,7 @@ public class ObavezeListController extends ComponentController {
 	@Override
 	public void onShow(OnShowEvent event) {
 		setAppropriateButton();
-		
+		setListDate(data.getPrikazaniDatum().get());
 	}
 	
 	@FXML

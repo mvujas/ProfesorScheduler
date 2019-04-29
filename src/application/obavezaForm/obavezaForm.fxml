@@ -29,13 +29,14 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="176.0" layoutY="168.0" prefHeight="25.0" prefWidth="296.0" promptText="Naziv obaveze" />
-      <TextField layoutX="176.0" layoutY="206.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
-      <TextField layoutX="176.0" layoutY="242.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
-      <Button fx:id="obavezaAddButton" layoutX="300.0" layoutY="357.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Sacuvaj">
+      <TextField fx:id="nazivField" layoutX="176.0" layoutY="168.0" prefHeight="25.0" prefWidth="296.0" promptText="Naziv obaveze" />
+      <TextField fx:id="vremePocetkaField" layoutX="176.0" layoutY="206.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
+      <TextField fx:id="vremeKrajaField" layoutX="176.0" layoutY="242.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
+      <Button fx:id="saveBtn" layoutX="300.0" layoutY="357.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Sacuvaj">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label fx:id="errorLabel" layoutX="55.0" layoutY="290.0" text="* Greska!" textFill="RED" />
    </children>
 </AnchorPane>

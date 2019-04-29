@@ -14,7 +14,7 @@
          </font>
       </Label>
       <Rectangle fill="WHITE" height="341.0" layoutX="10.0" layoutY="67.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="480.0" />
-      <Button fx:id="obavezaAddButton" layoutX="300.0" layoutY="417.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Sacuvaj">
+      <Button fx:id="saveBtn" layoutX="300.0" layoutY="417.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Sacuvaj">
          <font>
             <Font size="14.0" />
          </font>
@@ -47,7 +47,8 @@
       <TextField fx:id="imeField" layoutX="183.0" layoutY="103.0" prefHeight="25.0" prefWidth="296.0" promptText="ime" />
       <TextField fx:id="prezimeField" layoutX="183.0" layoutY="143.0" prefHeight="25.0" prefWidth="296.0" promptText="prezime" />
       <TextField fx:id="brIndeksaField" layoutX="183.0" layoutY="183.0" prefHeight="25.0" prefWidth="296.0" promptText="broj/godina upisa" />
-      <TextField fx:id="vremePocetkaField" layoutX="183.0" layoutY="263.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
       <ComboBox fx:id="smerField" layoutX="183.0" layoutY="223.0" prefHeight="25.0" prefWidth="296.0" promptText="Naziv smera" />
+      <TextField fx:id="vremePocetkaField" layoutX="183.0" layoutY="263.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
+      <Label fx:id="errorLabel" layoutX="55.0" layoutY="309.0" text="* Uneti korisnik vec postoji!" textFill="RED" />
    </children>
 </AnchorPane>

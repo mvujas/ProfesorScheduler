@@ -8,10 +8,14 @@ import java.util.stream.Collectors;
 
 import org.joda.time.LocalDate;
 
+import database.transactions.AddObavezaTransaction;
+import database.transactions.AddStudentTransaction;
+import database.transactions.DMLTransaction;
 import database.transactions.GetAllObavezeTransaction;
 import database.transactions.GetAllSmerTransaction;
 import database.transactions.GetAllStudentTransaction;
 import database.transactions.SelectTransaction;
+import database.transactions.Transaction;
 import models.Obaveza;
 import models.Smer;
 import models.Student;
@@ -40,6 +44,20 @@ public class SQLDataManager implements DataManager {
 			connections.releaseConnection(conn);
 		}
 	}
+	
+	private int simpleDMLQuery(DMLTransaction transaction) {
+		Connection conn = null;
+		try {
+			conn = connections.getConnection();
+			int result = transaction.run(conn);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			connections.releaseConnection(conn);
+		}
+	}
 
 	@Override
 	public Map<Integer, Smer> getAllSmer() {
@@ -61,6 +79,16 @@ public class SQLDataManager implements DataManager {
 		return selectQuery(new GetAllObavezeTransaction())
 				.stream()
 				.collect(Collectors.groupingBy(o -> new LocalDate(o.getVremePocetka())));
+	}
+
+	@Override
+	public boolean addStudent(Student s) {
+		return simpleDMLQuery(new AddStudentTransaction(s)) > 0;
+	}
+
+	@Override
+	public boolean addObaveza(Obaveza o) {
+		return simpleDMLQuery(new AddObavezaTransaction(o)) > 0;
 	}
 
 	

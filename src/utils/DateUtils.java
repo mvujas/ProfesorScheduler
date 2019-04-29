@@ -1,5 +1,10 @@
 package utils;
 
+import java.text.ParseException;
+import java.util.regex.Pattern;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
@@ -9,7 +14,6 @@ import org.joda.time.format.DateTimeFormatter;
 public final class DateUtils {
 	private DateUtils() {}
 	
-	private static DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("dd. MM. yyyy.");
 	public static String getDatumAsString(LocalDateTime dateTime) {
 		if(dateTime == null) {
 			throw new NullPointerException("dateTime mustn't be null!");
@@ -23,7 +27,6 @@ public final class DateUtils {
 		return DATE_FORMATTER.print(dateTime);
 	}
 	
-	private static DateTimeFormatter TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm");
 	public static String getTimeAsString(LocalDateTime dateTime) {
 		if(dateTime == null) {
 			throw new NullPointerException("dateTime mustn't be null!");
@@ -49,4 +52,23 @@ public final class DateUtils {
 		return (UTC - 3600) * 1000L;
 	}
 	
+	
+	public static LocalTime strToLocalTime(String strTime) throws ParseException {
+		try {
+			return TIME_FORMATTER.parseLocalTime(strTime);
+		} catch(Exception e) {
+			throw new ParseException("Nevalidno vreme", 0);
+		}
+	}
+	
+	public static long localDateTimeToUTCTimestamp(LocalDateTime dateTime) {
+		DateTime utc = dateTime.toDateTime(DateTimeZone.UTC);
+		long secondsSinceEpoch = utc.getMillis() / 1000;
+		return secondsSinceEpoch;
+	}
+	
+	
+	private static final Pattern TIME_PATTERN = Pattern.compile("^\\d{2}:\\d{2}&");
+	private static DateTimeFormatter TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm");
+	private static DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("dd. MM. yyyy.");
 }

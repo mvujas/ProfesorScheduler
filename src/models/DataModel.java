@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import utils.DateUtils;
 
 public class DataModel {
 	private DataManager dataUtils;
@@ -62,6 +63,32 @@ public class DataModel {
 
 	public void setObaveze(ObservableMap<LocalDate, ObservableList<Obaveza>> obaveze) {
 		this.obaveze = obaveze;
+	}
+	
+	public boolean addStudent(Student student) {
+		boolean result = dataUtils.addStudent(student);
+		if(result) {
+			studenti.put(student.getBrojIndeksa(), student);
+		}
+		return result;
+	}
+	
+	public boolean addObaveza(Obaveza obaveza) {
+		boolean result = dataUtils.addObaveza(obaveza);
+		if(result) {
+			LocalDate dan = new LocalDate(obaveza.getVremePocetka());
+			ObservableList<Obaveza> obavezeZaDan = 
+					obaveze.get(dan);
+			if(obavezeZaDan == null) {
+				obavezeZaDan = FXCollections.observableArrayList(obaveza);
+				obaveze.put(dan, obavezeZaDan);
+			}
+			else {
+				obavezeZaDan.add(obaveza);	
+			}
+			obavezeZaDan.sort(Obaveza::compareTo);
+		}
+		return result;
 	}
 
 	private void loadModelFromDatabase() {

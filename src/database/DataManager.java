@@ -15,4 +15,6 @@ public interface DataManager {
 	Map<Integer, Smer> getAllSmer();
 	Map<String, Student> getAllStudent();
 	Map<LocalDate, List<Obaveza>> getAllObaveze();
+	boolean addStudent(Student s);
+	boolean addObaveza(Obaveza o);
 }

@@ -76,5 +76,8 @@ public final class DBUtils {
 		else if(value instanceof Date) {
 			pstmt.setDate(parameterIndex, (java.sql.Date)value);
 		}
+		else if(value == null) {
+			pstmt.setNull(parameterIndex, Types.VARCHAR);
+		}
 	}
 }

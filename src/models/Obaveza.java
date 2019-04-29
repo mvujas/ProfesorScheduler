@@ -7,7 +7,7 @@ import org.joda.time.LocalDateTime;
 
 import utils.DateUtils;
 
-public class Obaveza {
+public class Obaveza implements Comparable<Obaveza> {
 	private Integer id;
 	private String naziv;
 	private LocalDateTime vremePocetka;
@@ -67,8 +67,8 @@ public class Obaveza {
 	}
 	
 	public static boolean doOverlap(Obaveza o1, Obaveza o2) {
-		return new Interval(o1.vremePocetka.toDateTime(), o1.vremeKraja.toDateTime()).abuts(
-				new Interval(o2.vremePocetka.toDateTime(), o2.vremeKraja.toDateTime()));
+		return o1.vremePocetka.isBefore(o2.vremeKraja) &&
+				o2.vremePocetka.isBefore(o1.vremeKraja);
 	}
 	
 	public static Obaveza fromRowMap(Map<String, Object> mapa) {
@@ -85,6 +85,11 @@ public class Obaveza {
 	public String toString() {
 		return String.format("%s [%s, %s]", naziv, DateUtils.getTimeAsString(vremePocetka), 
 				DateUtils.getTimeAsString(vremeKraja));
+	}
+
+	@Override
+	public int compareTo(Obaveza o) {
+		return vremePocetka.compareTo(o.vremePocetka);
 	}
 	
 }

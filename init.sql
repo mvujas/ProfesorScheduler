@@ -27,8 +27,8 @@ INSERT INTO Student(broj_indeksa, ime, prezime, smer_s_id)
 VALUES ('12/10', 'Mika', 'Mikic', 1);
 
 INSERT INTO Obaveza(naziv, vreme_pocetka, vreme_kraja, student_broj_indeksa)
-VALUES ('konsultacije', 1322479800, 1322481639, '12/10');
+VALUES ('konsultacije', 1322479800, 1322481599, '12/10');
 INSERT INTO Obaveza(naziv, vreme_pocetka, vreme_kraja, student_broj_indeksa)
-VALUES ('sastanak katedre', 1322470800, 1322474439, null);
+VALUES ('sastanak katedre', 1322470800, 1322474399, null);
 INSERT INTO Obaveza(naziv, vreme_pocetka, vreme_kraja, student_broj_indeksa)
-VALUES ('izborno vece', 1322485200, 1322488839, null);
+VALUES ('izborno vece', 1322485200, 1322488799, null);

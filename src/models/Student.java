@@ -74,7 +74,7 @@ public class Student {
 			throws InvalidStudentInformationException {
 		if(smer == null) {
 			throw new InvalidStudentInformationException(
-					"Smer ne sme biti null");
+					"Smer ne sme biti prazan");
 		}
 		this.smer = smer;
 	}
