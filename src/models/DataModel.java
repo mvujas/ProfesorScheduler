@@ -16,6 +16,7 @@ public class DataModel {
 	private ObservableMap<String, Student> studenti;
 	private ObservableMap<LocalDate, ObservableList<Obaveza>> obaveze;
 	private Uloga uloga = null;
+	private LocalDate prikazaniDatum = new LocalDate();
 
 	public DataModel(DataManager dataUtils) {
 		this.dataUtils = dataUtils;
@@ -44,13 +45,18 @@ public class DataModel {
 			});
 		studenti = FXCollections.observableMap(sviStudenti);
 		Map<LocalDate, List<Obaveza>> sveObaveze = dataUtils.getAllObaveze();
+		obaveze = FXCollections.emptyObservableMap();
 		sveObaveze.entrySet()
 			.stream()
-			.forEach(lista -> lista.getValue().stream().forEach(obaveza -> {
-				if(obaveza.getStudentBrojIndeksa() != null) {
-					obaveza.setStudent(studenti.get(obaveza.getStudentBrojIndeksa()));
-				}
-			}));
+			.forEach(lista ->  {
+				lista.getValue().stream().forEach(obaveza -> {
+					if(obaveza.getStudentBrojIndeksa() != null) {
+						obaveza.setStudent(studenti.get(obaveza.getStudentBrojIndeksa()));
+					}
+				});
+				obaveze.put(lista.getKey(), FXCollections.observableList(lista.getValue()));
+			});
+		
 		System.out.println(sveObaveze);
 	}
 	
