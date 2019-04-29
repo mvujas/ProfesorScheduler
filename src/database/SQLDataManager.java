@@ -1,13 +1,18 @@
 package database;
 
 import java.sql.Connection;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.joda.time.LocalDate;
+
+import database.transactions.GetAllObavezeTransaction;
 import database.transactions.GetAllSmerTransaction;
 import database.transactions.GetAllStudentTransaction;
 import database.transactions.SelectTransaction;
+import models.Obaveza;
 import models.Smer;
 import models.Student;
 
@@ -49,6 +54,13 @@ public class SQLDataManager implements DataManager {
 		return selectQuery(new GetAllStudentTransaction())
 				.stream()
 				.collect(Collectors.toMap(Student::getBrojIndeksa, Function.identity()));
+	}
+
+	@Override
+	public Map<LocalDate, List<Obaveza>> getAllObaveze() {
+		return selectQuery(new GetAllObavezeTransaction())
+				.stream()
+				.collect(Collectors.groupingBy(o -> new LocalDate(o.getVremePocetka())));
 	}
 
 	

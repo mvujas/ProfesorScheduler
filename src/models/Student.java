@@ -95,6 +95,6 @@ public class Student {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s (%s)", ime, prezime, smer.getNaziv());
+		return String.format("%s %s", ime, prezime);
 	}
 }
