@@ -1,16 +1,24 @@
 package application.obavezeList;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import application.ComponentController;
 import application.OnShowEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import models.Obaveza;
 import models.Uloga;
+import utils.DateUtils;
 
 public class ObavezeListController extends ComponentController {
 	@FXML
 	private Button obavezaAddButton;
+	
+	@FXML
+	private DatePicker datePicker;
 	
 	@FXML
 	private TableColumn<Obaveza, String> opisObavezeKolona;
@@ -46,5 +54,11 @@ public class ObavezeListController extends ComponentController {
 	
 	@FXML
 	private void initialize() {
+		datePicker.setOnAction(e -> {
+			java.time.LocalDate datum = datePicker.getValue();
+			System.out.println(DateUtils.getDatumAsString(DateUtils.javaLocalDateToJodaLocalDate(datum)));
+			
+			System.out.println(datum);
+		});
 	}
 }
