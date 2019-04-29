@@ -4,6 +4,8 @@
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.27.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-dbcp2-2.6.0-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/commons-dbcp2-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-2.10.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/joda-time-2.10.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
