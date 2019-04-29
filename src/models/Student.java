@@ -1,14 +1,29 @@
 package models;
 
+import java.util.Map;
+
 import utils.StudentUtils;
 
 public class Student {
 	private String brojIndeksa;
 	private String ime;
 	private String prezime;
+	/*
+	 * Ovaj podatak je visak ali da ne bi bilo dupliranja podatak prilikom upita bice tu
+	 * Programer se savetuje da ne koristi ovo u svom programu sem onoga za sta je namenjen
+	 */
+	private Integer smerId;
 	private Smer smer;
 	
 	public Student() {}
+
+	public Integer getSmerId() {
+		return smerId;
+	}
+
+	public void setSmerId(Integer smerId) {
+		this.smerId = smerId;
+	}
 
 	public String getBrojIndeksa() {
 		return brojIndeksa;
@@ -61,5 +76,25 @@ public class Student {
 					"Smer ne sme biti null");
 		}
 		this.smer = smer;
+	}
+	
+	public static Student fromRowMap(Map<String, Object> mapa) {
+		Student student = new Student();
+		// Podaci u bazi bi trebalo da su uvek u vazecem formatu
+		try {
+			student.setBrojIndeksa((String)mapa.get("broj_indeksa"));
+			student.setIme((String)mapa.get("ime"));
+			student.setPrezime((String)mapa.get("prezime"));
+		}
+		catch(Exception e) {
+			
+		}
+		student.setSmerId((Integer)mapa.get("smer_s_id"));
+		return student;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s %s (%s)", ime, prezime, smer.getNaziv());
 	}
 }

@@ -1,5 +1,6 @@
 package application;
 
+import database.SQLDataManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ public class Application extends javafx.application.Application {
 	private DataModel data;
 	
 	{
-		data = new DataModel();
+		data = new DataModel(new SQLDataManager("db.db"));
 	}
 	
 	private Parent loadFXML(String fxmlFilePath) {

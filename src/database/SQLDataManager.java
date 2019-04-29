@@ -1,8 +1,15 @@
 package database;
 
 import java.sql.Connection;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import database.transactions.GetAllSmerTransaction;
+import database.transactions.GetAllStudentTransaction;
 import database.transactions.SelectTransaction;
+import models.Smer;
+import models.Student;
 
 public class SQLDataManager implements DataManager {
 	
@@ -27,6 +34,21 @@ public class SQLDataManager implements DataManager {
 		} finally {
 			connections.releaseConnection(conn);
 		}
+	}
+
+	@Override
+	public Map<Integer, Smer> getAllSmer() {
+		return selectQuery(new GetAllSmerTransaction())
+				.stream()
+				.collect(Collectors.toMap(Smer::getId, Function.identity()));
+	}
+
+	// Konektovanje studenata i smerova se radi u modelu
+	@Override
+	public Map<String, Student> getAllStudent() {
+		return selectQuery(new GetAllStudentTransaction())
+				.stream()
+				.collect(Collectors.toMap(Student::getBrojIndeksa, Function.identity()));
 	}
 
 	

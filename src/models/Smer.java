@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Map;
+
 public class Smer {
 	private Integer id;
 	private String naziv;
@@ -30,4 +32,15 @@ public class Smer {
 		this.naziv = naziv;
 	}
 	
+	public static Smer fromRowMap(Map<String, Object> mapa) {
+		Smer smer = new Smer();
+		smer.setId((int)mapa.get("s_id")); // Ovo bi trebalo da baci neki NullPointerException ako ne posotji
+		smer.setNaziv((String)mapa.get("naziv"));
+		return smer;
+	}
+	
+	@Override
+	public String toString() {
+		return getNaziv();
+	}
 }

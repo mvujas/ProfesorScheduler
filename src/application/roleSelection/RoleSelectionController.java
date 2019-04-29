@@ -1,7 +1,6 @@
 package application.roleSelection;
 
 import application.ComponentController;
-import application.OnShowEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import models.Uloga;

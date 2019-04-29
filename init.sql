@@ -20,5 +20,8 @@ CREATE TABLE Obaveza (
 	FOREIGN KEY(student_broj_indeksa) REFERENCES Student(broj_indeksa)
 );
 
-INSERT INTO Smer(naziv) VALUES ('Racunarske nauke');
-INSERT INTO Smer(naziv) VALUES ('Informacione tehnologije');
+INSERT INTO Smer(s_id, naziv) VALUES (1, 'Racunarske nauke');
+INSERT INTO Smer(s_id, naziv) VALUES (2, 'Informacione tehnologije');
+
+INSERT INTO Student(broj_indeksa, ime, prezime, smer_s_id)
+VALUES ('12/10', 'Mika', 'Mikic', 1);

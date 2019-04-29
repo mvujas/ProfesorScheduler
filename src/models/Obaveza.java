@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Map;
+
 public class Obaveza {
 	private Integer id;
 	private String naziv;
@@ -12,6 +14,10 @@ public class Obaveza {
 		this.naziv = naziv;
 		this.vreme = vreme;
 		this.student = student;
+	}
+	
+	public Obaveza() {
+		this(null, null, null, null);
 	}
 	
 	public Integer getId() {
@@ -39,5 +45,10 @@ public class Obaveza {
 		this.student = student;
 	}
 	
+	public static Obaveza fromRowMap(Map<String, Object> mapa) {
+		Obaveza obaveza = new Obaveza();
+		
+		return obaveza;
+	}
 	
 }
