@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.obavezaForm.ObavezaFormController">
+   <children>
+      <Rectangle fill="WHITE" height="211.0" layoutX="10.0" layoutY="135.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="480.0" />
+      <Label layoutX="10.0" layoutY="107.0" text="Nova obaveza za dd. MM. yyyy.">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="170.0" text="Opis obaveze:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="208.0" text="Pocetak:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="244.0" text="Kraj:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="176.0" layoutY="168.0" prefHeight="25.0" prefWidth="296.0" promptText="Naziv obaveze" />
+      <TextField layoutX="176.0" layoutY="206.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
+      <TextField layoutX="176.0" layoutY="242.0" prefHeight="25.0" prefWidth="296.0" promptText="hh:mm" />
+      <Button fx:id="obavezaAddButton" layoutX="300.0" layoutY="357.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Sacuvaj">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

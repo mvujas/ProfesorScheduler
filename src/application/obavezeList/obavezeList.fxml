@@ -29,10 +29,10 @@
       </Label>
       <TableView layoutX="10.0" layoutY="161.0" prefHeight="277.0" prefWidth="480.0">
         <columns>
-          <TableColumn prefWidth="182.0" text="Opis" />
-          <TableColumn minWidth="7.0" prefWidth="75.0" text="Od" />
-            <TableColumn prefWidth="75.0" text="Do" />
-            <TableColumn prefWidth="147.0" text="Student" />
+          <TableColumn fx:id="opisObavezeKolona" prefWidth="182.0" text="Opis" />
+          <TableColumn fx:id="vremePocetkaObavezeKolona" minWidth="7.0" prefWidth="75.0" text="Od" />
+            <TableColumn fx:id="vremeKrajaObavezeKolona" prefWidth="75.0" text="Do" />
+            <TableColumn fx:id="studentKolona" prefWidth="147.0" text="Student" />
         </columns>
       </TableView>
       <Button fx:id="obavezaAddButton" layoutX="300.0" layoutY="449.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="190.0" text="Dugme akcije">

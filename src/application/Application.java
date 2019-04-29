@@ -40,6 +40,10 @@ public class Application extends javafx.application.Application {
 				loadFXML("/application/roleSelection/roleSelection.fxml"));
 		screenController.addScreen("obavezeList", 
 				loadFXML("/application/obavezeList/obavezeList.fxml"));
+		screenController.addScreen("obavezaForm", 
+				loadFXML("/application/obavezaForm/obavezaForm.fxml"));
+		screenController.addScreen("konsultacijaForm", 
+				loadFXML("/application/konsultacijaForm/konsultacijaForm.fxml"));
 	}
 	
 	private void closingApplicationProcedure(WindowEvent e) {
